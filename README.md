@@ -48,7 +48,6 @@ We implemented a **modern declarative data pipeline** using Databricks that focu
 - Uploaded to **Amazon S3**  
 
 **Datasets:**  
-
 - `city.csv` → Dimension Table  
 - `trips.csv` → Fact Table  
 
