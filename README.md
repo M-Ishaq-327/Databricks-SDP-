@@ -57,3 +57,134 @@ Mobile Apps → OLTP Databases → S3
 ---
 
 ## 🏛️ Medallion Architecture  
+
+### 🟤 Bronze Layer  
+
+- Raw ingestion from S3  
+- Schema enforcement  
+
+### ⚪ Silver Layer  
+
+- Cleaned & enriched data  
+- Fact–Dimension joins  
+
+### 🟡 Gold Layer  
+
+- Aggregated, business-ready tables  
+- Optimized for analytics  
+
+---
+
+## 🔹 Pipeline Type  
+
+**Lakeflow Spark Declarative Pipelines**  
+
+✔ Automatic:  
+
+- Dependency management  
+- Incremental processing  
+- Execution optimization  
+
+---
+
+## 📊 Analytics Use Cases (Gold Layer)  
+
+Region (City) level metrics:  
+
+- ⭐ Average passenger rating  
+- 🚗 Average driver rating  
+- 📊 Total number of rides  
+- 💰 Total revenue per city  
+- 📏 Distance-based insights  
+
+👉 Designed specifically for **regional / city managers**  
+
+---
+
+## 🧱 Data Model  
+
+### 📌 Dimension Table  
+
+**City**  
+
+- `city_id`  
+- `city_name`  
+
+---
+
+### 📌 Fact Table  
+
+**Trips**  
+
+- `trip_id`  
+- `city_id`  
+- `fare_amount`  
+- `passenger_rating`  
+- `driver_rating`  
+- `distance_traveled`  
+- `trip_timestamp`  
+
+---
+
+## 🔐 Governance & Security  
+
+**Unity Catalog** used for:  
+
+- Data access control  
+- Schema governance  
+- Table-level permissions  
+
+---
+
+## 🧠 Tools & Technologies  
+
+- Databricks  
+- Apache Spark  
+- Lakeflow Declarative Pipelines  
+- Amazon S3  
+- Unity Catalog  
+- Delta Lake  
+- SQL & PySpark  
+
+---
+
+## 🚀 Key Outcomes  
+
+- ⚡ Faster regional insights  
+- 🔁 Reduced manual pipeline orchestration  
+- 📈 Scalable and modular data architecture  
+- 💡 Demonstrates innovation using modern Databricks features  
+- 🧩 Clear separation of raw, refined, and business data  
+
+---
+
+## 📁 Repository Structure  
+├── data/
+│ ├── city.csv
+│ └── trips.csv
+├── bronze/
+├── silver/
+├── gold/
+├── notebooks/
+├── architecture/
+│ └── architecture_diagram.png
+└── README.md
+
+---
+
+## 🧪 Project Focus  
+
+This project focuses on **data engineering architecture and pipeline design**.  
+
+🚫 Dashboard creation is intentionally out of scope.  
+
+---
+
+## 🏁 Final Notes  
+
+This project showcases:  
+
+- Real-world data engineering problem solving  
+- Declarative pipeline design  
+- Enterprise-grade analytics architecture  
+- Stakeholder-driven solution thinking  
