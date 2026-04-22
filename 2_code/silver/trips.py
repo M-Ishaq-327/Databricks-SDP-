@@ -17,3 +17,29 @@ def trips_silver():
         F.col("driver_rating").alias("driver_rating"),
         F.col("ingest_datetime").alias("bronze_ingest_timestamp"),
     )
+    df_silver = df_silver.withColumn(
+        "silver_processed_timestamp", F.current_timestamp()
+    )
+    return df_silver
+
+
+dp.create_streaming_table(
+    name="transportation.silver.trips",
+    comment="Cleaned and validated orders with CDC upsert capability",
+    table_properties={
+        "quality": "silver",
+        "layer": "silver",
+        "delta.enableChangeDataFeed": "true",
+        "delta.autoOptimize.optimizeWrite": "true",
+        "delta.autoOptimize.autoCompact": "true",
+    },
+)
+
+dp.create_auto_cdc_flow(
+    target="transportation.silver.trips",
+    source="trips_silver_staging",
+    keys=["id"],
+    sequence_by=F.col("silver_processed_timestamp"),
+    stored_as_scd_type=1,
+    except_column_list=[],
+)
