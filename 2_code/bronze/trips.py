@@ -4,6 +4,20 @@ import pyspark.sql.functions as F
 SOURCE_PATH = "s3://goodcabs-mi/trips"
 
 
+# https://docs.databricks.com/aws/en/ingestion/cloud-object-storage/auto-loader/schema
+@dp.table(
+    name="transportation.bronze.trips",
+    comment="Streaming ingestion of raw orders data with Auto Loader",
+    table_properties={
+        "quality": "bronze",
+        "layer": "bronze",
+        "source_format": "csv",
+        "delta.enableChangeDataFeed": "true",
+        "delta.autoOptimize.optimizeWrite": "true",
+        "delta.autoOptimize.autoCompact": "true",
+    },
+)
+
 def orders_bronze():
     df = (
         spark.readStream.format("cloudFiles")
